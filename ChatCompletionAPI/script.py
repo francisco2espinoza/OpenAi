@@ -6,9 +6,7 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-response = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
+messages =[ 
         {
             "role": "system",
             "content": "You are a helpful assistant that can answer questions and help with tasks."
@@ -25,7 +23,11 @@ response = client.chat.completions.create(
             "role": "user",
             "content": "What is the capital of France?"
         },
-    ],
+    ]
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages,
     temperature=0.6,
     max_tokens=100,
     top_p=1,
